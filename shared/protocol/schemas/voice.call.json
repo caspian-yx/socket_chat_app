@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Voice Call Request",
+  "type": "object",
+  "required": ["type", "command", "payload"],
+  "properties": {
+    "type": {
+      "const": "request"
+    },
+    "command": {
+      "const": "voice/call"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["call_type", "target"],
+      "properties": {
+        "call_type": {
+          "type": "string",
+          "enum": ["direct", "group"],
+          "description": "direct for 1-on-1, group for conference"
+        },
+        "target": {
+          "type": "object",
+          "required": ["type", "id"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["user", "room"]
+            },
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "codec": {
+          "type": "string",
+          "enum": ["opus", "pcm"],
+          "default": "opus"
+        },
+        "sample_rate": {
+          "type": "integer",
+          "enum": [8000, 16000, 24000, 48000],
+          "default": 48000
+        },
+        "channels": {
+          "type": "integer",
+          "enum": [1, 2],
+          "default": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "type", "timestamp", "command", "payload"],
+  "properties": {
+    "command": {"const": "auth/register"},
+    "type": {"enum": ["request"]},
+    "payload": {
+      "type": "object",
+      "required": ["username", "password"],
+      "properties": {
+        "username": {"type": "string", "minLength": 1},
+        "password": {"type": "string", "minLength": 1},
+        "client_info": {"type": "object"}
+      }
+    },
+    "headers": {"type": "object"}
+  }
+}

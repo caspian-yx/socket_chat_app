@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "type", "timestamp", "command", "payload"],
+  "properties": {
+    "command": {"const": "room/create"},
+    "payload": {
+      "type": "object",
+      "properties": {
+        "room_id": {"type": "string"},
+        "encrypted": {"type": "boolean"},
+        "password": {"type": "string"},
+        "owner": {"type": "string"},
+        "created_at": {"type": "integer"},
+        "status": {"type": "integer"},
+        "error_message": {"type": "string"},
+        "members": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["room_id"]
+    }
+  }
+}

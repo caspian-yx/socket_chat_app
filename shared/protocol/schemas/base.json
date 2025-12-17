@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "type": {"type": "string", "enum": ["request", "response", "event"]},
+    "timestamp": {"type": "integer"},
+    "command": {"type": "string"},
+    "headers": {"type": "object"},
+    "payload": {"type": "object"}
+  },
+  "required": ["id", "type", "timestamp", "command", "payload"]
+}

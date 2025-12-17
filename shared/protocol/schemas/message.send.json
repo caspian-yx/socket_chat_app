@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "type", "timestamp", "command", "payload"],
+  "properties": {
+    "command": {"const": "message/send"},
+    "payload": {
+      "type": "object",
+      "required": ["conversation_id", "target", "content"],
+      "properties": {
+        "conversation_id": {"type": "string"},
+        "target": {"type": "object"},
+        "content": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {"type": "string"},
+            "text": {"type": "string"}
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {"type": "object"}
+        }
+      }
+    }
+  }
+}

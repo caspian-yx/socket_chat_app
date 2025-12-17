@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "type", "timestamp", "command", "payload"],
+  "properties": {
+    "command": {"const": "file/request"},
+    "payload": {
+      "type": "object",
+      "properties": {
+        "target": {"type": "object"},
+        "file_name": {"type": "string"},
+        "file_size": {"type": "integer"},
+        "checksum": {"type": "string"},
+        "session_id": {"type": "string"},
+        "from_user": {"type": "string"}
+      },
+      "anyOf": [
+        {"required": ["target", "file_name", "file_size"]},
+        {"required": ["session_id", "file_name", "file_size", "from_user"]},
+        {"required": ["status"], "properties": {"status": {"type": ["string", "integer"]}, "error_message": {"type": "string"}}}
+      ]
+    }
+  }
+}

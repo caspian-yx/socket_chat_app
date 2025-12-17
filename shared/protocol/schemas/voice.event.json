@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Voice Call Event",
+  "type": "object",
+  "required": ["type", "command", "payload"],
+  "properties": {
+    "type": {
+      "const": "event"
+    },
+    "command": {
+      "const": "voice/event"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["event_type", "call_id"],
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": ["incoming", "ringing", "connected", "ended", "rejected", "error", "member_joined", "member_left"],
+          "description": "Type of voice event"
+        },
+        "call_id": {
+          "type": "string"
+        },
+        "from_user": {
+          "type": "string"
+        },
+        "call_type": {
+          "type": "string",
+          "enum": ["direct", "group"]
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "type": {"type": "string"},
+            "id": {"type": "string"}
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "Optional message for event"
+        },
+        "members": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of users in the call (for group calls)"
+        }
+      }
+    }
+  }
+}

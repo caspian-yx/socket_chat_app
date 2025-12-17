@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "type", "timestamp", "command", "payload"],
+  "properties": {
+    "command": {"const": "message/event"},
+    "type": {"enum": ["event"]},
+    "payload": {
+      "type": "object",
+      "required": ["conversation_id", "sender_id", "content", "message_id"],
+      "properties": {
+        "conversation_id": {"type": "string"},
+        "sender_id": {"type": "string"},
+        "content": {"type": "object"},
+        "message_id": {"type": "string"}
+      }
+    }
+  }
+}
