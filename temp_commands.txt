@@ -1,0 +1,29 @@
+from enum import StrEnum
+
+class MsgType(StrEnum):
+    """命令枚举：里程碑1 聚焦 auth/presence/message"""
+    # Auth
+    LOGIN = "auth/login"  # Client -> Server: 登录
+    LOGIN_ACK = "auth/login_ack"  # Server -> Client: 登录响应
+    LOGOUT = "auth/logout"  # Client -> Server: 登出
+
+    # Presence
+    HEARTBEAT = "presence/heartbeat"  # 双向: 心跳
+    UPDATE = "presence/update"  # Client -> Server: 状态更�?
+    LIST = "presence/list"  # Client -> Server: 拉在线列�?
+    EVENT = "presence/event"  # Server -> Client: 状态推�?
+
+    # Message
+    SEND = "message/send"  # Client -> Server: 发送消�?(单聊)
+    ACK = "message/ack"  # 双向: 消息确认
+    EVENT = "message/event"  # Server -> Client: 消息推�?
+    HISTORY = "message/history"  # Client -> Server: 拉历�?(预留，但里程�? 可简)
+
+    # 预留 for 里程�?+
+    OFFLINE = "message/offline"
+
+# 可选：命令到类型映�?(未来 router �?
+COMMAND_DIRECTION = {
+    MsgType.LOGIN: "Client -> Server",
+    # ...
+}
